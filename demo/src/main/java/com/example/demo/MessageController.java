@@ -10,7 +10,7 @@ public class MessageController {
     private final List<String> messages = new ArrayList<>();
 
     //curl http://localhost:8080/messages
-    /*@GetMapping(value = "messages")
+    /*@GetMapping("messages")
     public ResponseEntity<List<String>> getMessages() {
         return ResponseEntity.ok(messages);
     }*/
