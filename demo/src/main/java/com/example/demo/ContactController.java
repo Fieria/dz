@@ -9,9 +9,9 @@ import java.util.List;
 
 @RestController
 public class ContactController {
-    private final List<Contact> contacts = new ArrayList<>();
+    private final List<Contact> contacts = new ArrayList<Contact>();
 
-    //curl -X POST -H "Content-Type: application/json" -d '{"name":"Polina","age":16}' http://localhost:8080/contacts
+    //curl -X POST -H "Content-Type: application/json" -d '{"name":"Polina", "number": "****", "email": "***@gmail.com"}' http://localhost:8080/contacts
     @PostMapping("contacts")
     public ResponseEntity<Void> addContact(@RequestBody Contact contact) {
         contacts.add(contact);
@@ -26,7 +26,7 @@ public class ContactController {
     }
 
     //curl http://localhost:8080/contacts
-    @GetMapping("users")
+    @GetMapping("contacts")
     public ResponseEntity<List<Contact>> getAllContacts() {
         return ResponseEntity.ok(contacts);
     }
@@ -37,8 +37,8 @@ public class ContactController {
         return ResponseEntity.ok(contacts.get(index));
     }
 
-    //curl -X PUT -H "Content-Type: application/json" -d {contact} http://localhost:8080/contacts/{index}
-    @PutMapping("messages/{index}")
+    //curl -X PUT -H "Content-Type: application/json" -d '{"name":"Polina", "number":"***", "email": "***@gmail.com"}' http://localhost:8080/contacts/{index}
+    @PutMapping("contacts/{index}")
     public ResponseEntity<Void> updateContact(
             @PathVariable("index") Integer i,
             @RequestBody Contact contact) {
