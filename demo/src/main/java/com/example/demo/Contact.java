@@ -5,12 +5,6 @@ public class Contact {
     int number;
     String email;
 
-    public Contact(String name, int number){
-        this.name = name;
-        this.number = number;
-        this.email = "none";
-    }
-
     public Contact(String name, int number, String email){
         this.name = name;
         this.number = number;
