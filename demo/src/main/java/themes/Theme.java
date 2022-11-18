@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Theme {
-    List<Comment> comments= new ArrayList<Comment>();
     String name;
+    List<Comment> comments= new ArrayList<Comment>();
 
-    public Theme(String name){
+    public Theme(String name, List<Comment> comments){
         this.name = name;
+        this.comments.addAll(comments);
     }
 
     public void setName(String name) {
@@ -20,10 +21,6 @@ public class Theme {
 
     public void addComment(Comment comment) {
         this.comments.add(comment);
-    }
-
-    public void addComment(int index, Comment comment) {
-        this.comments.add(index, comment);
     }
 
     public void updateComment(int index, Comment comment) {
