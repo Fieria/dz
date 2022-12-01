@@ -8,20 +8,24 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-
+@RestController
 public class UserController {
     private final List<User> users = new ArrayList<User>();
     Long max_id = Long.valueOf(0);
 
 
     //curl http://localhost:8080/users
-    @GetMapping("users")
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(users);
+    @GetMapping("users/all")
+    public ResponseEntity<List<String>> getAllUsers() {
+        List<String> s = new ArrayList<String>();
+        for (User u: users){
+            s.add(u.toString());
+        }
+        return ResponseEntity.ok(s);
     }
 
 
-    //curl -X POST -H "Content-Type: application/json" -d '{"name":"Polina","password": "56", "age": 16}' http://localhost:8080/users?password=56
+    //curl -X POST -H "Content-Type: application/json" -d '{"name":"Polina","password": "56", "age": 16}' http://localhost:8080/users?repeatPassword=56
     @PostMapping("users")
     public ResponseEntity<Void> addUser(@RequestBody User user, @RequestParam String repeatPassword) {
         if(user.getPassword().equals(repeatPassword)){
@@ -39,9 +43,9 @@ public class UserController {
 
     //curl http://localhost:8080/users?id=239
     @GetMapping("users")
-    public ResponseEntity<User> getUser(@RequestParam Integer id) {
+    public ResponseEntity<String> getUser(@RequestParam Integer id) {
         for (User u : users){
-            if (u.getId() == id) return ResponseEntity.ok(u);
+            if (u.getId() == id) return ResponseEntity.ok(u.toString());
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
